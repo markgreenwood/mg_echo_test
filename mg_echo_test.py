@@ -1,14 +1,16 @@
+import logging
 from pysummit import descriptors as desc
 from pysummit import decoders as dec
 
-filename = "echo_data.csv"
+filename = "MG_echo_data.csv"
 
-def main(TX, RX, iterations, tp, pp):
+def main(TX, RX, tp, pp, args):
     with open(filename, 'a') as f:
-        f.write("iteration,tx,rx\n")
+        f.write("------------------\niteration,tx,rx\n")
         f.flush()
-        #for iteration in range(iterations):
-        for iteration in range(1):
+        iterations = 1
+        echo_attempts = 1000
+        for iteration in range(iterations):
             (status, null) = TX.keep(0)
             if(status != 0x01):
                 print dec.decode_error_status(status, "keep(0)")
@@ -25,7 +27,7 @@ def main(TX, RX, iterations, tp, pp):
                     print dec.decode_error_status(status, "netstat(1)")
 
             # Echo to slave index 0
-            for echo_count in range(1000):
+            for echo_count in range(echo_attempts):
                 (status, null) = TX.echo(0, retry=1)
     #            if(status != 0x01):
     #                print dec.decode_error_status(status, "echo(0, retry=1)")
@@ -56,6 +58,9 @@ def main(TX, RX, iterations, tp, pp):
 
             f.write('%d,%d,%d\n' % (iteration, tx_totalPackets, rx_totalPackets))
             f.flush()
+
+            print "TxPER: ", 100*rx_totalPackets/echo_attempts, "%\n"
+            print "RxPER: ", 100*tx_totalPackets/rx_totalPackets, "%\n"
 
             if((iterations > 1) and (iteration+1 < iterations)):
                 a = raw_input("  Press return to continue...")
