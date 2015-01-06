@@ -1,9 +1,9 @@
 from __future__ import division
-
+import sys
 import logging
 from pysummit import comport
 from pysummit import descriptors as desc
-from pysummit import decoders as dec
+#from pysummit import decoders as dec
 from pysummit.devices import TxAPI
 from pysummit.devices import RxAPI
 from pysummit.power_controller import PowerController
@@ -38,10 +38,11 @@ def main(TX, RX, tp=None, pc=None, args=[]):
 
             # Echo to slave index 0
             for echo_count in range(echo_attempts):
-                print "Echo #", echo_count
+                print ".",
+                sys.stdout.flush()
                 (status, null) = TX.echo(0, retry=1)
                 if(status != 0x01):
-                    print dec.decode_error_status(status, "echo(0, retry=1)")
+                    print TX.decode_error_status(status, "echo(0, retry=1)")
 
             # Get netstat from master
             (status, ns_struct) = TX.netstat(0)
@@ -52,7 +53,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             for i in range(4):
                 tx_totalPackets  += ns_struct.PacketReceiveErrors[i]
 
-            print "TX: Packets Received:", tx_totalPackets
+            print "\nTX: Packets Received:", tx_totalPackets
 
             # Get netstat from slaves
             for rx in RX:
@@ -70,11 +71,11 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             f.write('%d,%d,%d\n' % (iteration, tx_totalPackets, rx_totalPackets))
             f.flush()
 
-            print "echo_attempts: ", echo_attempts, "\n"
-            print "rx_totalPackets: ", rx_totalPackets, "\n"
-            print "tx_totalPackets: ", tx_totalPackets, "\n"
-            print "TxPER: ", 100.*(1.-(float(rx_totalPackets)/echo_attempts)), "%\n"
-            print "RxPER: ", 100.*(1.-(float(tx_totalPackets)/rx_totalPackets)), "%\n"
+            print "echo_attempts: ", echo_attempts
+            print "rx_totalPackets: ", rx_totalPackets
+            print "tx_totalPackets: ", tx_totalPackets
+            print "TxPER: ", 100.*(1.-(float(rx_totalPackets)/echo_attempts))
+            print "RxPER: ", 100.*(1.-(float(tx_totalPackets)/rx_totalPackets))
 
 #            print "TEST CASE ======"
 #            rx_totalPackets = 995
@@ -106,15 +107,17 @@ if __name__ == '__main__':
     #pc = PowerController()
 
 # Set up devices
-    Tx = TxAPI()
-    Rx = RxAPI()
-    coms = []
-    ports = comport.ComPort.get_open_ports()
-    print "ports = ", ports, "\n"
+    Tx = TxAPI() # Instantiate a master
+    Rx = RxAPI() # Instantiate a collection of slaves
+    coms = [] # COM ports (empty list)
+    ports = comport.ComPort.get_open_ports() # Find the open COM ports
+    print "ports = ", ports
     for port in ports:
-        coms.append(comport.ComPort(port))
-    print "coms = ", coms, "\n"
-    Rx.set_coms(coms, prune_devs=1)
+        coms.append(comport.ComPort(port)) # Add each open COM port to the coms list
+    print "coms = ", coms
+    Rx.set_coms(coms, prune_devs=1) # Search the COM port list for Summit devices
+
+    a = raw_input("Are you ready to start?")
 
 # Start the test
     main(Tx, Rx)
