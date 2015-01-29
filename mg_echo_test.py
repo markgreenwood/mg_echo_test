@@ -57,6 +57,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             (status, ns_struct) = TX.netstat(0)
             if(status != 0x01):
                 print TX.decode_error_status(status, "netstat(0)")
+            print "\nTx netstat:\n", ns_struct
 
             tx_totalPackets = 0
             for i in range(4):
@@ -69,6 +70,8 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                 (status, ns_struct) = rx.netstat(0)
                 if(status != 0x01):
                     print rx.decode_error_status(status, "netstat(0)")
+                print "\nRx netstat:\n", ns_struct
+
 
                 rx_totalPackets = 0
                 for i in range(4):
@@ -118,14 +121,19 @@ if __name__ == '__main__':
         coms.append(comport.ComPort(port)) # Add each open COM port to the coms list
     print "coms = ", coms
     Rx.set_coms(coms, prune_devs=1) # Search the COM port list for Summit devices
+
+    (status, null) = Tx.dfs_override(1)
+    if (status != 0x01):
+        print "\n", tx.decode_error_status(status, "dfs_override(1)")
+
     for rx in Rx:
         # Use Antenna 2 for both transmit and receive
         (status, null) = rx.wr(0x405028, 0x02)
         if (status != 0x01):
             print "\n", rx.decode_error_status(status, "wr(0x405028, 0x02)")
-        (status, null) = rx.wr(0x401018, 0xB3)
+        (status, null) = rx.wr(0x401018, 0x13)
         if (status != 0x01):
-            print "\n", rx.decode_error_status(status, "wr(0x401018, 0xB3)")
+            print "\n", rx.decode_error_status(status, "wr(0x401018, 0x13)")
         (status, value) = rx.rd(0x405028)
         if (status != 0x01):
             print "\n", rx.decode_error_status(status, "rd(0x405028)")
@@ -136,15 +144,31 @@ if __name__ == '__main__':
         print "Reg 0x401018 = %x" % value
 
     # Disco (beacon + restore)
-    (status, null) = Tx.disco()
+    channel = 8
+    (status, null) = Tx.beacon(4500,channel)
     if(status != 0x01):
-        print "\n", Tx.decode_error_status(status, "echo(0, retry=1)")
+        print "\n", Tx.decode_error_status(status, "beacon(4500,channel)")
+    (status, null) = Tx.discover(1)
+    if(status != 0x01):
+        print "\n", Tx.decode_error_status(status, "discover(1)")
+
+    # Do I need to set i2s_clocks in?
+
+    # Slot
+    (status, null) = Tx.slot(0,1)
+    if (status != 0x01):
+        print "\n", Tx.decode_error_status(status, "slot(0,1)")
 
     # Start the network (go into isoch)
     (status, null) = Tx.start()
-    if(status != 0x01):
-        print "\n", Tx.decode_error_status(status, "echo(0, retry=1)")
-    a = raw_input("Are you ready to start?")
+    if (status != 0x01):
+        print "\n", Tx.decode_error_status(status, "start()")
+    (status, channel) = Tx.get_radio_channel()
+    if (status != 0x01):
+        print "\n", Tx.decode_error_status(status, "get_radio_channel()")
+    a = raw_input("On channel {0}. Are you ready to start?".format(channel))
+    if (a and (a[0] == "N" or a[0] == "n")):
+        exit()
 
     # Start the test
     main(Tx, Rx)
