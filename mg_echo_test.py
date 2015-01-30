@@ -26,7 +26,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
         if (args):
             iterations = int(args[0])
         else:
-            iterations = 1
+            iterations = 5
 
         # Echo tests start here
         for iteration in range(iterations):
@@ -94,7 +94,9 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                 print "RxPER: ", 100.*(1.-(float(tx_totalPackets)/rx_totalPackets)), "%"
 
             if ((iterations > 1) and (iteration+1 < iterations)):
-                a = raw_input("Press return to continue... ")
+                a = raw_input("Do you want to continue (Y/n)? ")
+            if (a and (a[0]=="N" or a[0]=="n")):
+                break
 
 if __name__ == '__main__':
 
