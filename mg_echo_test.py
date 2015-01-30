@@ -20,7 +20,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
         f.flush()
 
         # Number of packets to echo
-        echo_attempts = 1000
+        echo_attempts = 500
 
         # Set the number of times to iterate the full echo test
         if (args):
@@ -44,6 +44,9 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                 (status, null) = rx.netstat(1)
                 if(status != 0x01):
                     print "\n", rx.decode_error_status(status, "netstat(1)")
+
+            # Adjust attenuation
+            a = raw_input("Set next attenuation value. Hit <Enter> to continue. ")
 
             # Echo to slave index 0
             for echo_count in range(echo_attempts):
@@ -143,7 +146,7 @@ if __name__ == '__main__':
             print "\n", rx.decode_error_status(status, "rd(0x401018)")
         print "Reg 0x401018 = %x" % value
 
-    # Disco (beacon + restore)
+    # Beacon and discover 
     channel = 8
     (status, null) = Tx.beacon(4500,channel)
     if(status != 0x01):
@@ -154,12 +157,12 @@ if __name__ == '__main__':
 
     # Do I need to set i2s_clocks in?
 
-    # Slot
+    # Audio slot setup
     (status, null) = Tx.slot(0,1)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "slot(0,1)")
 
-    # Start the network (go into isoch)
+    # Start the network (go into ISOCH)
     (status, null) = Tx.start()
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "start()")
@@ -173,7 +176,7 @@ if __name__ == '__main__':
     # Start the test
     main(Tx, Rx)
 
-    # Stop the network (go out of isoch)
+    # Stop the network (go out of ISOCH)
     (status, null) = Tx.stop()
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "stop()")
