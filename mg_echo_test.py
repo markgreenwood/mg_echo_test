@@ -30,16 +30,19 @@ def main(TX, RX, tp=None, pc=None, args=[]):
 
         # Echo tests start here
         for iteration in range(iterations):
+            print "Turning off SpeakerKeeper..."
             (status, null) = TX.keep(0)
             if (status != 0x01):
                 print "\n", TX.decode_error_status(status, "keep(0)")
 
+            print "Resetting master net statistics..."
             # Reset master statistics
             (status, null) = TX.netstat(1)
             if (status != 0x01):
                 print "\n", TX.decode_error_status(status, "netstat(1)")
 
             # Reset all slave statistics
+            print "Resetting all slave net statistics..."
             for rx in RX:
                 (status, null) = rx.netstat(1)
                 if (status != 0x01):
@@ -49,6 +52,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             a = raw_input("Set next attenuation value. Hit <Enter> to continue. ")
 
             # Echo to slave index 0
+            print "Performing echo test..."
             for echo_count in range(echo_attempts):
                 sys.stdout.write(".")
                 sys.stdout.flush()
@@ -57,6 +61,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                     print "\n", TX.decode_error_status(status, "echo(0, retry=1)")
 
             # Get netstat from master
+            print "Querying net statistics from master..."
             (status, ns_struct) = TX.netstat(0)
             if (status != 0x01):
                 print TX.decode_error_status(status, "netstat(0)")
@@ -69,6 +74,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             print "\nTX: Packets Received:", tx_totalPackets
 
             # Get netstat from slaves
+            print "Querying net statistics from slaves..."
             for rx in RX:
                 (status, ns_struct) = rx.netstat(0)
                 if (status != 0x01):
@@ -131,9 +137,11 @@ if __name__ == '__main__':
 
     for rx in Rx:
         # Use Antenna 2 for both transmit and receive
+        print "Turning off antenna diversity..."
         (status, null) = rx.wr(0x405028, 0x02)
         if (status != 0x01):
             print "\n", rx.decode_error_status(status, "wr(0x405028, 0x02)")
+        print "Selecting Antenna 2..."
         (status, null) = rx.wr(0x401018, 0x13)
         if (status != 0x01):
             print "\n", rx.decode_error_status(status, "wr(0x401018, 0x13)")
@@ -148,9 +156,11 @@ if __name__ == '__main__':
 
     # Beacon and discover 
     channel = 8
+    print "Beacon on channel {0}...".format(channel)
     (status, null) = Tx.beacon(4500,channel)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "beacon(4500,channel)")
+    print "Discover full..."
     (status, null) = Tx.discover(1)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "discover(1)")
@@ -158,11 +168,13 @@ if __name__ == '__main__':
     # Do I need to set i2s_clocks in?
 
     # Audio slot setup
+    print "Assigning audio slots..."
     (status, null) = Tx.slot(0,1)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "slot(0,1)")
 
     # Start the network (go into ISOCH)
+    print "Starting ISOCH mode..."
     (status, null) = Tx.start()
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "start()")
@@ -177,6 +189,7 @@ if __name__ == '__main__':
     main(Tx, Rx)
 
     # Stop the network (go out of ISOCH)
+    print "Stopping ISOCH..."
     (status, null) = Tx.stop()
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "stop()")
