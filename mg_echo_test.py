@@ -31,18 +31,18 @@ def main(TX, RX, tp=None, pc=None, args=[]):
         # Echo tests start here
         for iteration in range(iterations):
             (status, null) = TX.keep(0)
-            if(status != 0x01):
+            if (status != 0x01):
                 print "\n", TX.decode_error_status(status, "keep(0)")
 
             # Reset master statistics
             (status, null) = TX.netstat(1)
-            if(status != 0x01):
+            if (status != 0x01):
                 print "\n", TX.decode_error_status(status, "netstat(1)")
 
             # Reset all slave statistics
             for rx in RX:
                 (status, null) = rx.netstat(1)
-                if(status != 0x01):
+                if (status != 0x01):
                     print "\n", rx.decode_error_status(status, "netstat(1)")
 
             # Adjust attenuation
@@ -53,12 +53,12 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                 sys.stdout.write(".")
                 sys.stdout.flush()
                 (status, null) = TX.echo(0, retry=1)
-                if(status != 0x01):
+                if (status != 0x01):
                     print "\n", TX.decode_error_status(status, "echo(0, retry=1)")
 
             # Get netstat from master
             (status, ns_struct) = TX.netstat(0)
-            if(status != 0x01):
+            if (status != 0x01):
                 print TX.decode_error_status(status, "netstat(0)")
             print "\nTx netstat:\n", ns_struct
 
@@ -71,7 +71,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             # Get netstat from slaves
             for rx in RX:
                 (status, ns_struct) = rx.netstat(0)
-                if(status != 0x01):
+                if (status != 0x01):
                     print rx.decode_error_status(status, "netstat(0)")
                 print "\nRx netstat:\n", ns_struct
 
@@ -93,8 +93,8 @@ def main(TX, RX, tp=None, pc=None, args=[]):
             if (rx_totalPackets > 0):
                 print "RxPER: ", 100.*(1.-(float(tx_totalPackets)/rx_totalPackets)), "%"
 
-            if((iterations > 1) and (iteration+1 < iterations)):
-                a = raw_input("  Press return to continue...")
+            if ((iterations > 1) and (iteration+1 < iterations)):
+                a = raw_input("Press return to continue... ")
 
 if __name__ == '__main__':
 
@@ -119,10 +119,8 @@ if __name__ == '__main__':
     Rx = RxAPI() # Instantiate a collection of slaves
     coms = [] # COM ports (empty list)
     ports = comport.ComPort.get_open_ports() # Find the open COM ports
-    print "ports = ", ports
     for port in ports:
         coms.append(comport.ComPort(port)) # Add each open COM port to the coms list
-    print "coms = ", coms
     Rx.set_coms(coms, prune_devs=1) # Search the COM port list for Summit devices
 
     (status, null) = Tx.dfs_override(1)
@@ -149,10 +147,10 @@ if __name__ == '__main__':
     # Beacon and discover 
     channel = 8
     (status, null) = Tx.beacon(4500,channel)
-    if(status != 0x01):
+    if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "beacon(4500,channel)")
     (status, null) = Tx.discover(1)
-    if(status != 0x01):
+    if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "discover(1)")
 
     # Do I need to set i2s_clocks in?
