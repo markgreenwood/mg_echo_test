@@ -30,6 +30,11 @@ def main(TX, RX, tp=None, pc=None, args=[]):
 
         # Echo tests start here
         for iteration in range(iterations):
+
+            # Adjust attenuation
+            a = raw_input("Set next attenuation value. Hit <Enter> to continue. ")
+
+            # Turn off SpeakerKeeper because it broadcasts extra packets that mess up echo stats(?)
             print "Turning off SpeakerKeeper..."
             (status, null) = TX.keep(0)
             if (status != 0x01):
@@ -47,9 +52,6 @@ def main(TX, RX, tp=None, pc=None, args=[]):
                 (status, null) = rx.netstat(1)
                 if (status != 0x01):
                     print "\n", rx.decode_error_status(status, "netstat(1)")
-
-            # Adjust attenuation
-            a = raw_input("Set next attenuation value. Hit <Enter> to continue. ")
 
             # Echo to slave index 0
             print "Performing echo test..."
