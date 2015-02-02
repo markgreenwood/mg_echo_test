@@ -169,12 +169,12 @@ if __name__ == '__main__':
 
     # Do I need to set i2s_clocks in?
     clks = desc.AUDIO_CLOCK_SETUP()
-    clks.audioSource = 0x0
-	clks.audioSetup.sclkFrequency = 0x2
-	clks.audioSetup.driveClks = 0x0
-	clks.audioSetup.mclkFrequency = 0x3
-	clks.audioSetup.mclkOutputEnable = 0x0
-	(status, null) = Tx.set_i2s_clocks(clks)
+    clks.audioSource = 0x1
+    clks.audioSetup.sclkFrequency = 0x0
+    clks.audioSetup.driveClks = 0x0
+    clks.audioSetup.mclkFrequency = 0x3
+    clks.audioSetup.mclkOutputEnable = 0x0
+    (status, null) = Tx.set_i2s_clocks(clks)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "set_i2s_clocks(clks)")
 
