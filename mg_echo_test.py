@@ -156,16 +156,12 @@ if __name__ == '__main__':
             print "\n", rx.decode_error_status(status, "rd(0x401018)")
         print "Reg 0x401018 = %x" % value
 
-    # Beacon and discover 
+    # Combined beacon and discover (disco) 
     channel = 8
-    print "Beacon on channel {0}...".format(channel)
-    (status, null) = Tx.beacon(4500,channel)
+    print "Disco on channel {0}...".format(channel)
+    (status, null) = Tx.disco(4500,channel,0)
     if (status != 0x01):
-        print "\n", Tx.decode_error_status(status, "beacon(4500,channel)")
-    print "Discover full..."
-    (status, null) = Tx.discover(1)
-    if (status != 0x01):
-        print "\n", Tx.decode_error_status(status, "discover(1)")
+        print "\n", Tx.decode_error_status(status, "disco(4500,channel,0)")
 
     # Do I need to set i2s_clocks in?
     clks = desc.AUDIO_CLOCK_SETUP()
