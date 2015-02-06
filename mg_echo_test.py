@@ -180,6 +180,12 @@ if __name__ == '__main__':
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "slot(0,1)")
 
+    # Set volume
+    print "Setting volume..."
+    (status, null) = Tx.volume(0, 0xFFFFF)
+    if (status != 0x01):
+        print "\n", Tx.decode_error_status(status, "volume(0, 0xFFFFF)")
+
     # Start the network (go into ISOCH)
     print "Starting ISOCH mode..."
     (status, null) = Tx.start()
