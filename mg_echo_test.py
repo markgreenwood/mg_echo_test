@@ -8,6 +8,7 @@ from pysummit.devices import TxAPI
 from pysummit.devices import RxAPI
 from pysummit.power_controller import PowerController
 from pysummit import testprofile
+from pysummit.bsp.pi_bsp import PiBSP
 
 filename = "MG_echo_data.csv"
 
@@ -131,7 +132,8 @@ if __name__ == '__main__':
     #pc = PowerController()
 
     # Set up devices
-    Tx = TxAPI() # Instantiate a master
+    pi_bsp = PiBSP()
+    Tx = TxAPI(bsp=pi_bsp) # Instantiate a master
     Rx = RxAPI() # Instantiate a collection of slaves
     coms = [] # COM ports (empty list)
     ports = comport.ComPort.get_open_ports() # Find the open COM ports
@@ -162,7 +164,7 @@ if __name__ == '__main__':
             print "\n", rx.decode_error_status(status, "rd(0x401018)")
         print "Reg 0x401018 = %x" % value
 
-    # Combined beacon and discover (disco) 
+    # Combined beacon and discover (disco)
     channel = 8
     print "Disco on channel {0}...".format(channel)
     (status, null) = Tx.disco(4500,channel,0)
