@@ -71,7 +71,7 @@ def main(TX, RX, tp=None, pc=None, args=[]):
 
             tx_totalPackets = 0
             for i in range(4):
-                tx_totalPackets  += ns_struct.PacketReceiveErrors[i]
+                tx_totalPackets += ns_struct.PacketReceiveErrors[i]
 
             print "\nTX: Packets Received:", tx_totalPackets
 
@@ -90,6 +90,12 @@ def main(TX, RX, tp=None, pc=None, args=[]):
 
 
                 print "RX: Packets Received:", rx_totalPackets
+
+            # Turn SpeakerKeeper back on while we change attenuation settings
+            print "Turning on SpeakerKeeper..."
+            (status, null) = TX.keep(1)
+            if (status != 0x01):
+                print "\n", TX.decode_error_status(status, "keep(1)")
 
             f.write('%d,%d,%d\n' % (iteration, tx_totalPackets, rx_totalPackets))
             f.flush()
