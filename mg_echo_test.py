@@ -166,8 +166,11 @@ if __name__ == '__main__':
 
     # Combined beacon and discover (disco)
     channel = 8
-    print "Disco on channel {0}...".format(channel)
-    (status, null) = Tx.disco(4500,channel,0)
+
+    (status, null) = Tx.set_radio_channel(0, channel)
+    if (status != 0x01):
+        print "\n", Tx.decode_error_status(status, "set_radio_channel(0, channel)")
+    (status, null) = Tx.discover(1)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "disco(4500,channel,0)")
 
