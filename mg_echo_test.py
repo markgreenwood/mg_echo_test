@@ -170,7 +170,7 @@ if __name__ == '__main__':
     (status, null) = Tx.set_radio_channel(0, channel)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "set_radio_channel(0, channel)")
-    (status, null) = Tx.discover(1)
+    (status, null) = Tx.discover(0)
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "disco(4500,channel,0)")
 

@@ -1,0 +1,300 @@
+------------------- header --------------------
+0104 : versionInfo
+0000ffff : imageLength
+00 : blockEmpty
+00000000 : sectionChecksum
+1218 : sectionBuildDate
+2014 : sectionBuildYear
+0744 : sectionBuildTime
+00 : sectionEncrypted
+
+------------- master descriptor ------------
+02 ea 3f 00 0b fc : MacAddress
+0000e003 : VendorID
+0000000f : ModuleID
+00 : HardwareType
+ffffffff : AsicVersion
+ffffffff : HardwareVersion
+18a3 : FirmwareVersion
+20141218 : BuildDate
+0000 : reserved
+ff : AntennaSelect
+00 : reserved1[0]
+0000 : reserved1[1..2]
+0000 : USBVendorID
+0000 : USBProductID
+0000 : reserved2[0..1]
+0000 : reserved2[2..3]
+00 : NumberAttachedSpeakers
+00 : ControlPort
+05 : i2cSampleDelay
+01 : dfsEnable
+
+------------- speaker descriptor 0 ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+0000 : StaticSpeakerType
+ff : StaticAudioSlot
+ffff : CrossoverPoint
+ff : SpeakerSize
+ff ff ff ff ff ff ff ff : Reserved
+
+------------- amplifier descriptor ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+02 : MaxSampleRate
+0000 : AmplifierLatency
+00000000 : EnergyStarScanTime
+ff : amplifierInterfaceType
+
+[PWM Stage 2/3]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 0]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 1]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM DRCCoefficient]
+ffff ffff ffff ffff ffff ffff ffff ffff ffff
+ff : Active
+ff : OutputMode
+ffff : PulseDeadPTiming
+ffff : PulseDeadNTiming
+ffff : PulseCycleTiming
+ffff : SqrTermGain
+
+------------- speaker descriptor 1 ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+0000 : StaticSpeakerType
+ff : StaticAudioSlot
+ffff : CrossoverPoint
+ff : SpeakerSize
+ff ff ff ff ff ff ff ff : Reserved
+
+------------- amplifier descriptor ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+02 : MaxSampleRate
+0000 : AmplifierLatency
+00000000 : EnergyStarScanTime
+ff : amplifierInterfaceType
+
+[PWM Stage 2/3]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 0]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 1]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM DRCCoefficient]
+ffff ffff ffff ffff ffff ffff ffff ffff ffff
+ff : Active
+ff : OutputMode
+ffff : PulseDeadPTiming
+ffff : PulseDeadNTiming
+ffff : PulseCycleTiming
+ffff : SqrTermGain
+
+------------- speaker descriptor 2 ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+0000 : StaticSpeakerType
+ff : StaticAudioSlot
+ffff : CrossoverPoint
+ff : SpeakerSize
+ff ff ff ff ff ff ff ff : Reserved
+
+------------- amplifier descriptor ------------
+ÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿÿ
+ffffffff : VendorID
+ffffffff : ModelID
+ffffffff : SerialNumber
+02 : MaxSampleRate
+0000 : AmplifierLatency
+00000000 : EnergyStarScanTime
+ff : amplifierInterfaceType
+
+[PWM Stage 2/3]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 0]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM Stage 1 Bank 1]
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff ffffffff 
+
+[PWM DRCCoefficient]
+ffff ffff ffff ffff ffff ffff ffff ffff ffff
+ff : Active
+ff : OutputMode
+ffff : PulseDeadPTiming
+ffff : PulseDeadNTiming
+ffff : PulseCycleTiming
+ffff : SqrTermGain
+00 : WisaVersion
+
+---------------- baseband data --------------
+0101 : Version
+[filter]
+fbea0000 fb3a0000 f6300000 e5a90000 fcb8ffe3 f9330c93 06f5fb76 0807f715 
+03550000 06cb0000 0ef50000 51357fff fedc037a e73250b0 05cff91c 09827648 
+[gain]
+f606b300 f4086f01 f20a9e02 f00d5e03 f0015603 
+ee01af04 ec021e05 ea02ab06 e8035b07 e6043a08 
+e4055209 e206b30a e0086f0b de0a9e0c dc0d5e0d 
+dc01560d da01af0e d8021e0f d602ab10 d4035b11 
+d2043a12 d0055213 ce06b314 cc086f15 ca0a9e16 
+c80d5e17 9c00d815 9a011016 98015617 9601af18 
+94021e19 9202ab1a 90035b1b 8e043a1c 8c05521d 
+8a06b31e 88086f1f 860a9e20 840d5e21 14015620 
+1201af21 10021e22 0e02ab23 0c035b24 0a043a25 
+08055226 0606b327 04086f28 020a9e29 000d5e2a 
+[preamble]
+02f102f1 f7850026 ff23faf9 0922ff30 05e3ffff 0922ff30 ff23faf9 f7860026 
+02f102f1 0026f786 faf9ff23 ff300922 ffff05e3 ff300922 faf9ff23 0026f786 
+0a000000 ffabf84b 028af8e1 0632054b 015901c8 03d3fa62 f8a1fc77 fd8cf933 
+063dfe57 03690042 0010f8a3 f73efcf7 0190fc40 03c1ff0a fe8f0a47 07a1ffbc 
+0400fc00 025c064b fc570284 f799042c 054305e9 047300e7 fc240533 fc63fe9a 
+fdc2f657 f833fef0 f7dafeb0 04cdfb43 ffd20371 fa1e075e 05de06c7 00c9063f 
+f6000000 00c9f9c1 05dff939 fa1ef8a2 ffd2fc8f 04cd04bd f7da0150 f833010f 
+fdc209a8 fc630165 fc24facc 0473ff18 0543fa16 f799fbd3 fc57fd7c 025cf9b5 
+04000400 07a20043 fe8ff5b7 03c100f4 019103bf f73e0308 0010075c 036affbd 
+063e01a8 fd8c06cb f8a20388 03d4059d 015afe37 0632fab3 028b071d ffac07b3 
+[fft_coef]
+40000000 3b21e782 2d41d2bf 187ec4df 0000c000 d2bfd2bf c4df187e 3fb1f9ba 
+3ec5f384 3d3fed6c 3b21e782 3871e1d5 3537dc72 3179d766 2d41d2bf 289ace87 
+238ecac9 1e2bc78f 187ec4df 1294c2c1 0c7cc13b 0646c04f 0000c000 f384c13b 
+e782c4df e1d5c78f dc72cac9 d2bfd2bf cac9dc72 c78fe1d5 c4dfe782 c13bf384 
+c04f0646 c4df187e ce87289a dc723537 ed6c3d3f 
+
+--------- radio initialization data ---------
+0101 : version
+[AL7230_registers]
+000ff560
+008aaaa1
+00451fe2
+005fcfb3
+007fe784
+00893455
+00169f56
+00ddc207
+000fac08
+00215529
+00e0100a
+004c080b
+000465bc
+00fffffd
+0000000e
+0018004f
+[airoha]
+f0 ff52 00080000 0006fe78
+f4 ff52 0008aaaa 0007fe78
+f8 ff53 00095555 0007fe78
+fc ff53 00080000 0006fe78
+08 ff54 00080000 0006fe78
+0c ff54 0008aaaa 0007fe78
+10 ff55 00095555 0007fe78
+22 ff56 00085555 0007fe78
+24 ff56 0008aaaa 0007fe78
+26 ff57 00090000 0007fe78
+28 ff57 00095555 0007fe78
+2a ff57 0009aaaa 0007fe78
+2c ff57 00080000 0006fe78
+2e ff57 00085555 0007fe78
+30 ff57 0008aaaa 0007fe78
+34 ff58 00095555 0007fe78
+38 ff58 00080000 0006fe78
+3c ff58 0008aaaa 0007fe78
+40 ff59 00095555 0007fe78
+64 ff5c 00095555 0007fe78
+68 ff5c 00080000 0006fe78
+6c ff5c 0008aaaa 0007fe78
+70 ff5d 00095555 0007fe78
+74 ff5d 00080000 0006fe78
+78 ff5d 0008aaaa 0007fe78
+7c ff5e 00095555 0007fe78
+80 ff5e 00080000 0006fe78
+84 ff5e 0008aaaa 0007fe78
+88 ff5f 00095555 0007fe78
+8c ff5f 00080000 0006fe78
+95 ff60 00098000 0007fe78
+99 ff60 00082aaa 0007fe78
+9d ff60 0008d555 0007fe78
+a1 ff61 00098000 0007fe78
+a5 ff61 00082aaa 0007fe78
+
+---------- radio calibration data -----------
+0102 : version
+0002 : DataType
+0008 : DefaultChannel
+000c : DefaultPower
+7070 : BasebandIQGain
+[m_txgc  b_txgc   m_servo  b_servo  temperature]
+ 0221     1bce     0000     0000     002b 
+ 0227     1abe     0000     0000     002b 
+ 022f     198a     0000     0000     002b 
+ 0238     1851     0000     0000     002b 
+ 0248     155e     0000     0000     002b 
+ 0245     14dc     0000     0000     002a 
+ 0249     141a     0000     0000     002b 
+ 0249     121a     0000     0000     002a 
+ 026c     1054     0000     0000     002a 
+ 024f     11ac     0000     0000     002b 
+ 0250     117e     0000     0000     002b 
+ 024f     1166     0000     0000     002b 
+ 0253     1104     0000     0000     002a 
+ 0257     10ba     0000     0000     002a 
+ 0257     1096     0000     0000     002a 
+ 025f     100e     0000     0000     002a 
+ 0261     0fd7     0000     0000     002a 
+ 025f     0fc8     0000     0000     002a 
+ 0264     0f5b     0000     0000     002a 
+ 0250     1028     0000     0000     002a 
+ 0277     0e70     0000     0000     002a 
+ 0281     0e1b     0000     0000     002a 
+ 0280     0e56     0000     0000     002a 
+ 027c     0eb5     0000     0000     002a 
+ 0288     0999     0000     0000     0029 
+ 024f     0cb2     0000     0000     0029 
+ 0251     0ce5     0000     0000     002a 
+ 0251     0d37     0000     0000     002a 
+ 0249     0ddf     0000     0000     002a 
+ 0236     0f3a     0000     0000     002a 
+ 0283     0aa2     0000     0000     0029 
+ 0257     0d36     0000     0000     0029 
+ 0258     0dc4     0000     0000     0029 
+ 0276     0d21     0000     0000     0029 
+ 026e     0e2d     0000     0000     0029 
