@@ -165,7 +165,7 @@ if __name__ == '__main__':
         print "Reg 0x401018 = %x" % value
 
     # Combined beacon and discover (disco)
-    channel = 8
+    channel = int(raw_input("Enter desired channel: "))
 
     (status, null) = Tx.set_radio_channel(0, channel)
     if (status != 0x01):
@@ -205,7 +205,7 @@ if __name__ == '__main__':
     (status, channel) = Tx.get_radio_channel()
     if (status != 0x01):
         print "\n", Tx.decode_error_status(status, "get_radio_channel()")
-    a = raw_input("On channel {0}. Are you ready to start?".format(channel))
+    a = raw_input("On channel {0}. Are you ready to start (Y/n)? ".format(channel))
     if (a and (a[0] == "N" or a[0] == "n")):
         exit()
 
